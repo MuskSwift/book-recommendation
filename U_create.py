@@ -11,15 +11,6 @@ def validate_user(username, password):
     # 如果匹配项的数量大于0，则返回True，否则返回False
     return not match.empty
 
-def creat_user(username):
-    # 源文件路径
-    source_file = 'users_rating_data/sorted_user_rating.csv'
-    # 目标文件路径，使用用户名作为文件名
-    target_file = f'users_rating_data/{username}.csv'
-
-    # 使用shutil库复制文件
-    shutil.copy(source_file, target_file)
-
 
 def register(username, password):
     # 调用函数读取用户数据
@@ -34,7 +25,14 @@ def register(username, password):
     # 将更新后的数据写回CSV文件，不保留索引
     updated_user_data.to_csv('user-secret.csv', index=False)
 
-    creat_user(username)
+    # 源文件路径
+    source_file = 'users_rating_data/sorted_user_rating.csv'
+    # 目标文件路径，使用用户名作为文件名
+    target_file = f'users_rating_data/{username}.csv'
+
+    # 使用shutil库复制文件
+    shutil.copy(source_file, target_file)
+
 
 
 def check_user_exists(user_name):
